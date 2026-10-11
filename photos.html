@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,116 @@
 
     <link rel="stylesheet" href="style.css">
 
-</head>
+    <style>
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
 
+        /* Photo Card */
+        .photo-card {
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Photo Container */
+        .photo-wrapper {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        /* Gallery Photos */
+        .photo-wrapper img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-wrapper img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Full-Screen Photo Viewer */
+        #photoLightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 999999;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 15px 20px;
+            box-sizing: border-box;
+        }
+
+        #photoLightbox.active {
+            display: flex;
+        }
+
+        /* Full-Screen Image */
+        #photoLightbox img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 5px;
+            cursor: default;
+        }
+
+        /* Close Button */
+        .lightbox-close {
+            position: absolute;
+            top: 12px;
+            right: 22px;
+            color: white;
+            background: transparent;
+            border: none;
+            font-size: 42px;
+            font-weight: normal;
+            line-height: 1;
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1000000;
+        }
+
+        .lightbox-close:hover {
+            color: #ffb6d9;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-wrapper {
+                height: 300px;
+            }
+
+            #photoLightbox {
+                padding: 55px 10px 15px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 12px;
+            }
+        }
+    </style>
+
+</head>
 
 <body>
 
@@ -71,6 +180,8 @@
         <section class="photo-gallery">
 
 
+            <!-- FIRST PHOTO: SOUMII -->
+
             <article class="photo-card">
 
 
@@ -79,7 +190,8 @@
                     <img
                         src="soumii.jpg"
                         alt="Our Favourite Photo"
-                        onclick="openLightbox(this.src, this.alt)"
+                        loading="lazy"
+                        onclick="openLightbox(this)"
                     >
 
                 </div>
@@ -105,6 +217,44 @@
             </article>
 
 
+
+            <!-- SECOND PHOTO: NUBDII -->
+
+            <article class="photo-card">
+
+
+                <div class="photo-wrapper">
+
+                    <img
+                        src="NUBDII.jpg"
+                        alt="Another Special Memory"
+                        loading="lazy"
+                        onclick="openLightbox(this)"
+                    >
+
+                </div>
+
+
+                <div class="photo-caption">
+
+                    <span>
+                        ANOTHER SPECIAL MEMORY 💗
+                    </span>
+
+                    <h2>
+                        A Memory to Remember ❤️
+                    </h2>
+
+                    <p>
+                        Every picture holds a little piece of our story.
+                    </p>
+
+                </div>
+
+
+            </article>
+
+
         </section>
 
 
@@ -118,8 +268,98 @@
 
 
 
-    <script src="script.js"></script>
+    <!-- FULL-SCREEN PHOTO VIEWER -->
+
+    <div
+        id="photoLightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Full-screen photo viewer"
+        onclick="closeLightbox()"
+    >
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="lightbox-close"
+            aria-label="Close full-screen photo"
+            onclick="closeLightbox()"
+        >
+            &times;
+        </button>
+
+
+        <!-- FULL-SCREEN IMAGE -->
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Full-screen memory"
+        >
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Open the selected photo in full screen
+
+        function openLightbox(photo) {
+
+            const lightbox = document.getElementById("photoLightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+
+            lightboxImage.src = photo.src;
+            lightboxImage.alt = photo.alt;
+
+            lightbox.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+        // Close the full-screen photo
+
+        function closeLightbox() {
+
+            const lightbox = document.getElementById("photoLightbox");
+
+            lightbox.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        // Prevent closing when clicking directly on the photo
+
+        document.getElementById("lightboxImage").addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+        });
+
+
+        // Close the photo when pressing Escape
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+
+                closeLightbox();
+
+            }
+
+        });
+
+    </script>
 
 
 </body>
 </html>
+```
