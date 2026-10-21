@@ -123,7 +123,6 @@
 
 <body>
 
-
     <!-- Navigation -->
 
     <header class="navbar">
@@ -154,10 +153,7 @@
 
     </header>
 
-
-
     <main class="page">
-
 
         <section class="page-heading">
 
@@ -175,53 +171,11 @@
 
         </section>
 
-
-
         <section class="photo-gallery">
 
-
-            <!-- FIRST PHOTO: SOUMII -->
-
-            <article class="photo-card">
-
-
-                <div class="photo-wrapper">
-
-                    <img
-                        src="soumii.jpg"
-                        alt="Our Favourite Photo"
-                        loading="lazy"
-                        onclick="openLightbox(this)"
-                    >
-
-                </div>
-
-
-                <div class="photo-caption">
-
-                    <span>
-                        SPECIAL MEMORY
-                    </span>
-
-                    <h2>
-                        One Beautiful Memory ❤️
-                    </h2>
-
-                    <p>
-                        Some pictures say more than words ever could.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- SECOND PHOTO: NUBDII -->
+            <!-- ONLY REMAINING PHOTO: NUBDII -->
 
             <article class="photo-card">
-
 
                 <div class="photo-wrapper">
 
@@ -233,7 +187,6 @@
                     >
 
                 </div>
-
 
                 <div class="photo-caption">
 
@@ -251,22 +204,15 @@
 
                 </div>
 
-
             </article>
-
 
         </section>
 
-
     </main>
-
-
 
     <footer>
         Made with ❤️ for our little world.
     </footer>
-
-
 
     <!-- FULL-SCREEN PHOTO VIEWER -->
 
@@ -289,7 +235,6 @@
             &times;
         </button>
 
-
         <!-- FULL-SCREEN IMAGE -->
 
         <img
@@ -299,8 +244,6 @@
         >
 
     </div>
-
-
 
     <!-- JAVASCRIPT -->
 
@@ -322,7 +265,6 @@
 
         }
 
-
         // Close the full-screen photo
 
         function closeLightbox() {
@@ -335,7 +277,6 @@
 
         }
 
-
         // Prevent closing when clicking directly on the photo
 
         document.getElementById("lightboxImage").addEventListener("click", function(event) {
@@ -343,7 +284,6 @@
             event.stopPropagation();
 
         });
-
 
         // Close the photo when pressing Escape
 
@@ -358,7 +298,6 @@
         });
 
     </script>
-
 
 </body>
 </html>
